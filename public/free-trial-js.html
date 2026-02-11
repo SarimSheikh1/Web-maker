@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteCraft - Free Trial (JavaScript Enhanced)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .checkbox-item:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            accent-color: #667eea;
+        }
+        
+        .submit-section {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: #e1e5e9;
+            border-radius: 2px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .field-counter {
+            font-size: 12px;
+            color: #666;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .tech-preview {
+            display: none;
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 SiteCraft Free Trial</h1>
+            <p>JavaScript Enhanced Version - Interactive form with real-time validation</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+            
+            <form id="trialForm" class="form-grid">
+                <div class="form-section">
+                    <h3>👤 Personal Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        <div class="field-counter" id="nameCounter">0/50</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company" placeholder="Your company name (optional)">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>🌐 Website Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="websiteType">Website Type *</label>
+                        <select id="websiteType" name="websiteType" required>
+                            <option value="">-- Select Website Type --</option>
+                            <option value="business">Business Website</option>
+                            <option value="portfolio">Portfolio</option>
+                            <option value="ecommerce">E-commerce Store</option>
+                            <option value="blog">Blog/News Site</option>
+                            <option value="restaurant">Restaurant/Food</option>
+                            <option value="agency">Agency/Services</option>
+                            <option value="nonprofit">Non-profit</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="techPreference">Technology Stack *</label>
+                        <select id="techPreference" name="techPreference" required>
+                            <option value="">-- Choose Technology --</option>
+                            <option value="visual">Visual Builder (No Code)</option>
+                            <option value="html-css">HTML + CSS Only</option>
+                            <option value="javascript">HTML + CSS + JavaScript</option>
+                            <option value="react">React/Next.js</option>
+                            <option value="python">Python (Django/Flask)</option>
+                            <option value="php">PHP</option>
+                            <option value="wordpress">WordPress</option>
+                        </select>
+                        <div id="techPreview" class="tech-preview"></div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>⚙️ Features Needed</h3>
+                    <p style="margin-bottom: 15px; color: #666;">Select all features you need:</p>
+                    
+                    <div class="checkbox-grid">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="contact" name="features" value="Contact Forms">
+                            <label for="contact">📧 Contact Forms</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="gallery" name="features" value="Image Gallery">
+                            <label for="gallery">🖼️ Image Gallery</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="blog" name="features" value="Blog/News">
+                            <label for="blog">📝 Blog/News</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ecommerce" name="features" value="E-commerce">
+                            <label for="ecommerce">🛒 E-commerce</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="auth" name="features" value="User Authentication">
+                            <label for="auth">🔐 User Authentication</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="payment" name="features" value="Payment Processing">
+                            <label for="payment">💳 Payment Processing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="social" name="features" value="Social Media Integration">
+                            <label for="social">📱 Social Media</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="seo" name="features" value="SEO Optimization">
+                            <label for="seo">🔍 SEO Optimization</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="analytics" name="features" value="Analytics">
+                            <label for="analytics">📊 Analytics</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="multilang" name="features" value="Multi-language">
+                            <label for="multilang">🌍 Multi-language</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mobile" name="features" value="Mobile App">
+                            <label for="mobile">📱 Mobile App</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain" name="features" value="Custom Domain">
+                            <label for="domain">🌐 Custom Domain</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>📋 Project Description</h3>
+                    
+                    <div class="form-group">
+                        <label for="description">Tell us about your project</label>
+                        <textarea id="description" name="description" rows="6" placeholder="Describe your website goals, target audience, or any specific requirements..."></textarea>
+                        <div class="field-counter" id="descCounter">0/500</div>
+                    </div>
+                </div>
+                
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        🚀 Start Free Trial
+                    </button>
+                    
+                    <div id="loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Processing your request...</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Form elements
+        const form = document.getElementById('trialForm');
+        const progressFill = document.getElementById('progressFill');
+        const nameInput = document.getElementById('name');
+        const nameCounter = document.getElementById('nameCounter');
+        const descInput = document.getElementById('description');
+        const descCounter = document.getElementById('descCounter');
+        const techSelect = document.getElementById('techPreference');
+        const techPreview = document.getElementById('techPreview');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Tech stack descriptions
+        const techDescriptions = {
+            'visual': '🎨 Perfect for beginners! Drag-and-drop interface with no coding required.',
+            'html-css': '🏗️ Clean, semantic markup. Fast loading and SEO-friendly.',
+            'javascript': '⚡ Interactive features, animations, and dynamic content.',
+            'react': '⚛️ Modern JavaScript framework for single-page applications.',
+            'python': '🐍 Server-side Python with Django or Flask for complex applications.',
+            'php': '🔧 Traditional server-side scripting for dynamic websites.',
+            'wordpress': '📝 Popular CMS with thousands of themes and plugins.'
+        };
+
+        // Character counters
+        nameInput.addEventListener('input', function() {
+            const count = this.value.length;
+            nameCounter.textContent = `${count}/50`;
+            if (count > 40) nameCounter.style.color = '#dc3545';
+            else nameCounter.style.color = '#666';
+        });
+
+        descInput.addEventListener('input', function() {
+            const count = this.value.length;
+            descCounter.textContent = `${count}/500`;
+            if (count > 450) descCounter.style.color = '#dc3545';
+            else descCounter.style.color = '#666';
+        });
+
+        // Tech stack preview
+        techSelect.addEventListener('change', function() {
+            const selected = this.value;
+            if (selected && techDescriptions[selected]) {
+                techPreview.innerHTML = techDescriptions[selected];
+                techPreview.style.display = 'block';
+            } else {
+                techPreview.style.display = 'none';
+            }
+        });
+
+        // Progress calculation
+        function updateProgress() {
+            const requiredFields = ['name', 'email', 'websiteType', 'techPreference'];
+            const filledFields = requiredFields.filter(field => {
+                const element = document.getElementById(field);
+                return element && element.value.trim() !== '';
+            });
+            
+            const progress = (filledFields.length / requiredFields.length) * 100;
+            progressFill.style.width = progress + '%';
+        }
+
+        // Add progress tracking to required fields
+        ['name', 'email', 'websiteType', 'techPreference'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', updateProgress);
+                field.addEventListener('change', updateProgress);
+            }
+        });
+
+        // Form validation
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const websiteType = document.getElementById('websiteType').value;
+            const techPreference = document.getElementById('techPreference').value;
+
+            if (!name) return 'Please enter your full name.';
+            if (!email) return 'Please enter your email address.';
+            if (!email.includes('@')) return 'Please enter a valid email address.';
+            if (!websiteType) return 'Please select a website type.';
+            if (!techPreference) return 'Please select a technology stack.';
+
+            return null;
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            successMessage.innerHTML = message;
+            successMessage.style.display = 'block';
+        }
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate form
+            const error = validateForm();
+            if (error) {
+                showError(error);
+                return;
+            }
+
+            // Show loading
+            submitBtn.style.display = 'none';
+            loading.style.display = 'block';
+
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                company: formData.get('company'),
+                websiteType: formData.get('websiteType'),
+                techPreference: formData.get('techPreference'),
+                features: formData.getAll('features'),
+                description: formData.get('description'),
+                submittedAt: new Date().toISOString()
+            };
+
+            // Simulate API call
+            setTimeout(() => {
+                // Store in localStorage
+                const submissions = JSON.parse(localStorage.getItem('sitecraft-submissions') || '[]');
+                submissions.push(data);
+                localStorage.setItem('sitecraft-submissions', JSON.stringify(submissions));
+
+                // Hide loading
+                loading.style.display = 'none';
+
+                // Show success
+                showSuccess(`
+                    <h3>🎉 Free Trial Activated!</h3>
+                    <p>Thank you, <strong>${data.name}</strong>! Your free trial has been activated.</p>
+                    <p>We've sent a confirmation email to <strong>${data.email}</strong>.</p>
+                    <p>You can now start building your ${data.websiteType} website using ${data.techPreference}!</p>
+                    <button onclick="window.location.reload()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer;">Start Building</button>
+                `);
+
+                // Reset form
+                form.reset();
+                updateProgress();
+                techPreview.style.display = 'none';
+
+            }, 2000);
+        });
+
+        // Auto-fill demo data (for testing)
+        function fillDemoData() {
+            document.getElementById('name').value = 'John Doe';
+            document.getElementById('email').value = 'john@example.com';
+            document.getElementById('company').value = 'Demo Company';
+            document.getElementById('websiteType').value = 'business';
+            document.getElementById('techPreference').value = 'javascript';
+            document.getElementById('description').value = 'I want to create a modern business website with interactive features.';
+            
+            // Check some features
+            ['contact', 'gallery', 'seo'].forEach(id => {
+                document.getElementById(id).checked = true;
+            });
+            
+            updateProgress();
+            techSelect.dispatchEvent(new Event('change'));
+        }
+
+        // Add demo button (for testing)
+        const demoBtn = document.createElement('button');
+        demoBtn.textContent = '🎯 Fill Demo Data';
+        demoBtn.type = 'button';
+        demoBtn.style.cssText = 'background: #ffc107; color: #212529; border: none; padding: 8px 16px; border-radius: 5px; margin: 10px; cursor: pointer; font-size: 14px;';
+        demoBtn.onclick = fillDemoData;
+        document.querySelector('.submit-section').appendChild(demoBtn);
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

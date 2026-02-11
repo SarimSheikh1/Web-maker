@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteCraft - Free Trial (Python Version)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 { color: #333; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+        .flash-error {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #c33;
+        }
+        .flash-success {
+            background: #efe;
+            color: #3c3;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #3c3;
+        }
+        .benefits {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .benefits h3 { color: #333; margin-top: 0; }
+        .benefits ul { margin: 0; padding-left: 20px; }
+        .benefits li { margin-bottom: 8px; color: #555; }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .tech-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+        .tech-item h4 { margin: 0 0 8px 0; color: #333; }
+        .tech-item p { margin: 0; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 SiteCraft Free Trial</h1>
+        <p class="subtitle">Python Flask Version - Create your first website in minutes!</p>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="company">Company/Organization</label>
+                <input type="text" id="company" name="company" placeholder="Your company name (optional)">
+            </div>
+            
+            <div class="form-group">
+                <label for="websiteType">What type of website do you want to create? *</label>
+                <select id="websiteType" name="websiteType" required>
+                    <option value="">-- Select Website Type --</option>
+                    <option value="business">Business Website</option>
+                    <option value="portfolio">Portfolio</option>
+                    <option value="ecommerce">E-commerce Store</option>
+                    <option value="blog">Blog/News Site</option>
+                    <option value="restaurant">Restaurant/Food</option>
+                    <option value="agency">Agency/Services</option>
+                    <option value="nonprofit">Non-profit</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="techPreference">Preferred Technology Stack *</label>
+                <select id="techPreference" name="techPreference" required>
+                    <option value="">-- Choose Technology --</option>
+                    <option value="visual">Visual Builder (No Code)</option>
+                    <option value="html-css">HTML + CSS Only</option>
+                    <option value="javascript">HTML + CSS + JavaScript</option>
+                    <option value="react">React/Next.js</option>
+                    <option value="python">Python (Django/Flask)</option>
+                    <option value="php">PHP</option>
+                    <option value="wordpress">WordPress</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>What features do you need? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="contact" name="features" value="Contact Forms">
+                        <label for="contact">Contact Forms</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="gallery" name="features" value="Image Gallery">
+                        <label for="gallery">Image Gallery</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="blog" name="features" value="Blog/News">
+                        <label for="blog">Blog/News</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ecommerce" name="features" value="E-commerce">
+                        <label for="ecommerce">E-commerce</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auth" name="features" value="User Authentication">
+                        <label for="auth">User Authentication</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="payment" name="features" value="Payment Processing">
+                        <label for="payment">Payment Processing</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="social" name="features" value="Social Media Integration">
+                        <label for="social">Social Media Integration</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="seo" name="features" value="SEO Optimization">
+                        <label for="seo">SEO Optimization</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="analytics" name="features" value="Analytics">
+                        <label for="analytics">Analytics</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="multilang" name="features" value="Multi-language">
+                        <label for="multilang">Multi-language</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="mobile" name="features" value="Mobile App">
+                        <label for="mobile">Mobile App</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="domain" name="features" value="Custom Domain">
+                        <label for="domain">Custom Domain</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Tell us about your project</label>
+                <textarea id="description" name="description" rows="4" placeholder="Describe your website goals, target audience, or any specific requirements..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">🚀 Start Free Trial</button>
+        </form>
+        
+        <div class="benefits">
+            <h3>🎁 What You Get With Your Free Trial</h3>
+            <ul>
+                <li>✅ Create 1 website for free</li>
+                <li>✅ Access to all 17 themes and templates</li>
+                <li>✅ Drag-and-drop visual editor</li>
+                <li>✅ Mobile-responsive design</li>
+                <li>✅ Export clean HTML/CSS/JS code</li>
+                <li>✅ Python Flask integration</li>
+                <li>✅ No credit card required</li>
+            </ul>
+            
+            <h3>🛠️ Available Technology Stacks</h3>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Visual Builder</h4>
+                    <p>No coding required. Perfect for beginners.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>HTML + CSS</h4>
+                    <p>Clean, semantic markup without JavaScript.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>JavaScript Enhanced</h4>
+                    <p>Interactive features and animations.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Python (Flask/Django)</h4>
+                    <p>Server-side Python for complex applications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

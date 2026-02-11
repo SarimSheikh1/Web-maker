@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteCraft - Free Trial Registration</title>
+</head>
+<body>
+    <h1>SiteCraft - Start Your Free Trial</h1>
+    
+    <p><strong>Create your first website in minutes. No credit card required.</strong></p>
+    
+    <form action="/api/free-trial" method="POST">
+        <h2>Personal Information</h2>
+        
+        <p>
+            <label for="name">Full Name (required):</label><br>
+            <input type="text" id="name" name="name" required size="40">
+        </p>
+        
+        <p>
+            <label for="email">Email Address (required):</label><br>
+            <input type="email" id="email" name="email" required size="40">
+        </p>
+        
+        <p>
+            <label for="company">Company/Organization:</label><br>
+            <input type="text" id="company" name="company" size="40">
+        </p>
+        
+        <h2>Website Details</h2>
+        
+        <p>
+            <label for="websiteType">What type of website do you want to create?</label><br>
+            <select id="websiteType" name="websiteType" required>
+                <option value="">-- Select Website Type --</option>
+                <option value="business">Business Website</option>
+                <option value="portfolio">Portfolio</option>
+                <option value="ecommerce">E-commerce Store</option>
+                <option value="blog">Blog/News Site</option>
+                <option value="restaurant">Restaurant/Food</option>
+                <option value="agency">Agency/Services</option>
+                <option value="nonprofit">Non-profit</option>
+                <option value="other">Other</option>
+            </select>
+        </p>
+        
+        <p>
+            <label for="techPreference">Preferred Technology Stack:</label><br>
+            <select id="techPreference" name="techPreference" required>
+                <option value="">-- Choose Technology --</option>
+                <option value="visual">Visual Builder (No Code)</option>
+                <option value="html-css">HTML + CSS Only</option>
+                <option value="javascript">HTML + CSS + JavaScript</option>
+                <option value="react">React/Next.js</option>
+                <option value="python">Python (Django/Flask)</option>
+                <option value="php">PHP</option>
+                <option value="wordpress">WordPress</option>
+            </select>
+        </p>
+        
+        <h2>Features Needed</h2>
+        <p>Select all features you need:</p>
+        
+        <p>
+            <input type="checkbox" id="contact" name="features" value="Contact Forms">
+            <label for="contact">Contact Forms</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="gallery" name="features" value="Image Gallery">
+            <label for="gallery">Image Gallery</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="blog" name="features" value="Blog/News">
+            <label for="blog">Blog/News</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="ecommerce" name="features" value="E-commerce">
+            <label for="ecommerce">E-commerce</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="auth" name="features" value="User Authentication">
+            <label for="auth">User Authentication</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="payment" name="features" value="Payment Processing">
+            <label for="payment">Payment Processing</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="social" name="features" value="Social Media Integration">
+            <label for="social">Social Media Integration</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="seo" name="features" value="SEO Optimization">
+            <label for="seo">SEO Optimization</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="analytics" name="features" value="Analytics">
+            <label for="analytics">Analytics</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="multilang" name="features" value="Multi-language">
+            <label for="multilang">Multi-language Support</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="mobile" name="features" value="Mobile App">
+            <label for="mobile">Mobile App</label>
+        </p>
+        
+        <p>
+            <input type="checkbox" id="domain" name="features" value="Custom Domain">
+            <label for="domain">Custom Domain</label>
+        </p>
+        
+        <h2>Project Description</h2>
+        
+        <p>
+            <label for="description">Tell us about your project:</label><br>
+            <textarea id="description" name="description" rows="5" cols="50" placeholder="Describe your website goals, target audience, or any specific requirements..."></textarea>
+        </p>
+        
+        <h2>Submit Your Request</h2>
+        
+        <p>
+            <input type="submit" value="Start Free Trial">
+            <input type="reset" value="Clear Form">
+        </p>
+    </form>
+    
+    <hr>
+    
+    <h2>What You Get With Your Free Trial</h2>
+    <ul>
+        <li>Create 1 website for free</li>
+        <li>Access to all templates and themes</li>
+        <li>Drag-and-drop visual editor</li>
+        <li>Mobile-responsive design</li>
+        <li>Export clean HTML/CSS code</li>
+        <li>No credit card required</li>
+    </ul>
+    
+    <h2>Available Technology Stacks</h2>
+    <dl>
+        <dt><strong>Visual Builder</strong></dt>
+        <dd>No coding required. Perfect for beginners who want to create websites quickly.</dd>
+        
+        <dt><strong>HTML + CSS Only</strong></dt>
+        <dd>Clean, semantic markup without JavaScript. Fast loading and accessible.</dd>
+        
+        <dt><strong>JavaScript Enhanced</strong></dt>
+        <dd>Interactive features, animations, and dynamic content.</dd>
+        
+        <dt><strong>Python (Django/Flask)</strong></dt>
+        <dd>Server-side Python frameworks for complex web applications.</dd>
+        
+        <dt><strong>React/Next.js</strong></dt>
+        <dd>Modern JavaScript frameworks for single-page applications.</dd>
+        
+        <dt><strong>PHP</strong></dt>
+        <dd>Traditional server-side scripting for dynamic websites.</dd>
+        
+        <dt><strong>WordPress</strong></dt>
+        <dd>Popular content management system with themes and plugins.</dd>
+    </dl>
+    
+    <h2>17 Beautiful Themes Available</h2>
+    <p>Choose from our collection of professionally designed themes:</p>
+    <ul>
+        <li>Default - Clean and professional</li>
+        <li>Dark - Modern dark theme</li>
+        <li>Neon - Bright and vibrant</li>
+        <li>Ocean - Blue and calming</li>
+        <li>Forest - Green and natural</li>
+        <li>Sunset - Warm orange tones</li>
+        <li>Royal - Purple and elegant</li>
+        <li>Cosmic - Space-inspired design</li>
+        <li>Retro - Vintage yellow theme</li>
+        <li>Arctic - Cool and minimal</li>
+        <li>Pastel - Soft and gentle</li>
+        <li>Cyberpunk - Futuristic green</li>
+        <li>And 5 more themes!</li>
+    </ul>
+    
+    <hr>
+    
+    <p>
+        <a href="/auth/signin">Already have an account? Sign in here</a><br>
+        <a href="/dashboard/demo">Try our instant demo without signing up</a>
+    </p>
+    
+    <p><small>SiteCraft - Build Beautiful Websites Without Code</small></p>
+</body>
+</html>
