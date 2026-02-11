@@ -1,6 +1,10 @@
-# SiteCraft - Website Builder SaaS
+# WebCraft Studio - Website Builder SaaS
 
 A production-ready full-stack SaaS application for building websites with a drag-and-drop visual editor. Built with Next.js, TypeScript, Prisma, and modern web technologies.
+
+## 🚀 Live Demo
+- **Main App:** http://localhost:3000  
+- **Portfolio:** http://localhost:8080/portfolio.html
 
 ## ✨ Features
 
